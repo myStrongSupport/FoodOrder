@@ -53,7 +53,6 @@ const Cart = (props) => {
       if (response.ok) {
         setIsSubmtting(false);
         setDidSubmit(true);
-        cartCtx.clearCart();
       } else {
         throw new Error("SomeThing went Wrong");
       }
@@ -61,6 +60,7 @@ const Cart = (props) => {
       setIsSubmtting(false);
       setHasError(e.message);
     }
+    cartCtx.clearCart();
   };
   // Variant
   const buttonActions = (
@@ -109,9 +109,11 @@ const Cart = (props) => {
     content = (
       <React.Fragment>
         <h2>Order Submitted</h2>
-        <button onClick={props.onCloseCart} className={classes.button}>
-          Close
-        </button>
+        <div className={classes.actions}>
+          <button onClick={props.onCloseCart} className={classes.button}>
+            Close
+          </button>
+        </div>
       </React.Fragment>
     );
   }
